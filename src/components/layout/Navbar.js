@@ -7,7 +7,7 @@ function Navbar() {
     const { user, logout } = useAuth()
     
     return (
-        <nav>
+        <nav className='flex items-center justify-between p-4 bg-gray-400'>
             <Link href="/">Home</Link>
             {user === null ? (
                 <>

@@ -50,7 +50,7 @@ function RegisterPage() {
     <div>
       <h1>Join DevCollab by Registering Yourself here</h1>
 
-      {setState && (
+      {/* {setState && ( */}
         <form onSubmit={handleSubmit}>
           <input
             type="username"
@@ -81,7 +81,7 @@ function RegisterPage() {
           </button>
           {state?.error && <p className="text-red-500">{state.error}</p>}
         </form>
-      )}
+      {/* )} */}
       <Link href="/login">Already have an account? Login</Link>
     </div>
   );
