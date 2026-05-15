@@ -139,6 +139,7 @@ function DashboardPage() {
     //   </div>
     // </ProtectedRoute>
 
+
     <ProtectedRoute>
           <div className="max-w-5xl mx-auto px-4 py-8">
     
@@ -165,7 +166,7 @@ function DashboardPage() {
                 <button
                   onClick={fetchDashboardData}
                   className="text-sm font-medium underline ml-4 hover:no-underline"
-                >
+                  >
                   Retry
                 </button>
               </div>
@@ -289,7 +290,7 @@ function DashboardPage() {
     
               {requests.length === 0 ? (
                 <EmptyState
-                  title="No collaboration requests yet"
+                title="No collaboration requests yet"
                   description="Requests will appear here when developers apply to your projects"
                 />
               ) : (
