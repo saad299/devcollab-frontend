@@ -2,7 +2,10 @@ import api from './api.js';
 
 export const register = async (username, email, password, password2) => {
     const response = await api.post('/auth/register/', { username, email, password, password2 });
+<<<<<<< HEAD
+=======
     response.then((response) => {
+>>>>>>> b4b3b0f4440339f59e8bbbbebe75bb00d72a8a73
         if (response.data.access) {
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
@@ -13,12 +16,18 @@ export const register = async (username, email, password, password2) => {
             throw new Error(error);
         }
         return response.data;
+<<<<<<< HEAD
+=======
     });
+>>>>>>> b4b3b0f4440339f59e8bbbbebe75bb00d72a8a73
 };
 
 export const login = async (email, password) => {
     const response = await api.post('/auth/login/', { email, password });
+<<<<<<< HEAD
+=======
     response.then((response) => {
+>>>>>>> b4b3b0f4440339f59e8bbbbebe75bb00d72a8a73
         if (response.data.access) {
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
@@ -28,7 +37,10 @@ export const login = async (email, password) => {
         (error) => {
             throw new Error(error);
         }
+<<<<<<< HEAD
+=======
     });
+>>>>>>> b4b3b0f4440339f59e8bbbbebe75bb00d72a8a73
     return response.data;
 };
 

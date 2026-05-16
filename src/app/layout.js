@@ -40,7 +40,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+<<<<<<< HEAD
+      <body suppressHydrationWarning>
+=======
       <body>
+>>>>>>> b4b3b0f4440339f59e8bbbbebe75bb00d72a8a73
         <AuthProvider>
           <ToastProvider>
             <Navbar />

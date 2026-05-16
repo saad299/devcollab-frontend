@@ -31,10 +31,10 @@ function RegisterPage() {
       setState(prev => ({ ...prev, error: "Passwords do not match" }));
       return;
     }
-    setState(prev => ({ ...prev, loading: true, errpr: null }));
+    setState(prev => ({ ...prev, loading: true, error: null }));
 
     try {
-      await register(state.username, state.email, state.password);
+      await register(state.username, state.email, state.password, state.password2);
       router.push("/dashboard");
     } catch (error) {
       const errMessage =
