@@ -2,6 +2,10 @@ const parseApiError = (error) => {
     if (!error || !error.message) {
         return "Something went wrong. Please try again.";
     }
+
+    if (!error.response || !error.response.data) {
+        return error.message || "Something went wrong. Please try again.";
+    }
     const data = error.response.data
 
     if (typeof data === 'string') {

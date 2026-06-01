@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import useAuth from '@/hooks/useAuth'
 import { getProjects } from '@/services/projects'
 import ProjectCard from '@/components/projects/ProjectCard'
@@ -9,10 +10,16 @@ import SkeletonCard from '@/components/ui/SkeletonCard'
 
 export default function LandingPage() {
   const { user } = useAuth()
+  const router = useRouter()
   const [recentProjects, setRecentProjects] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    if (user) {
+      router.push('/dashboard')
+      return
+    }
+    
     async function fetchRecentProjects() {
       try {
         const data = await getProjects()
@@ -25,7 +32,7 @@ export default function LandingPage() {
       }
     }
     fetchRecentProjects()
-  }, [])
+  }, [user, router])
 
   return (
     <div className="min-h-screen bg-gray-50">

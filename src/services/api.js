@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { redirect } from 'next/dist/server/api-utils';
+// import { redirect } from 'next/dist/server/api-utils';
 
 const axiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -32,15 +32,16 @@ axiosInstance.interceptors.response.use(
 
             try {
                 const refreshToken = localStorage.getItem('refresh_token');
-                const response = await axiosInstance.post('/auth/token/refresh/', { refresh_token: refreshToken });
-                const accessToken = response.data.access_token;
+                const response = await axiosInstance.post('/auth/token/refresh/', { refresh: refreshToken });
+                const accessToken = response.data.access;
                 localStorage.setItem('access_token', accessToken);
                 orignalRequest.headers.Authorization = `Bearer ${accessToken}`;
                 // orignalRequest._retry = false;
                 return axiosInstance(orignalRequest);
             } catch (refreshError) {
                 localStorage.clear();
-                redirect('/login');
+                // redirect('/login');
+                window.location.href = '/login';
                 return Promise.reject(refreshError);
             }
         }
