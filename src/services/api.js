@@ -27,6 +27,17 @@ axiosInstance.interceptors.response.use(
     async (error) => {
         const orignalRequest = error.config;
 
+        // Skip refresh logic for the refresh endpoint itself to prevent infinite loop
+        if (orignalRequest.url?.includes('/auth/token/refresh/')) {
+            // If refresh fails, clear tokens and redirect to login
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            localStorage.removeItem('access_token_expiry');
+            localStorage.removeItem('refresh_token_expiry');
+            window.location.href = '/login';
+            return Promise.reject(error);
+        }
+
         if (error.response?.status === 401 && !orignalRequest._retry) {
             orignalRequest._retry = true;
 
@@ -34,13 +45,20 @@ axiosInstance.interceptors.response.use(
                 const refreshToken = localStorage.getItem('refresh_token');
                 const response = await axiosInstance.post('/auth/token/refresh/', { refresh: refreshToken });
                 const accessToken = response.data.access;
+                const newRefreshToken = response.data.refresh;
                 localStorage.setItem('access_token', accessToken);
+                if (newRefreshToken) {
+                    localStorage.setItem('refresh_token', newRefreshToken);
+                }
                 orignalRequest.headers.Authorization = `Bearer ${accessToken}`;
                 // orignalRequest._retry = false;
                 return axiosInstance(orignalRequest);
             } catch (refreshError) {
-                localStorage.clear();
-                // redirect('/login');
+                // Clear tokens and redirect to login only if refresh genuinely fails
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('refresh_token');
+                localStorage.removeItem('access_token_expiry');
+                localStorage.removeItem('refresh_token_expiry');
                 window.location.href = '/login';
                 return Promise.reject(refreshError);
             }

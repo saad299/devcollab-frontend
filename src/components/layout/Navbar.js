@@ -32,9 +32,9 @@ function Navbar() {
                         <Link href="/projects/new" className='text-[14px] text-gray-600 px-[10px] py-[6px] rounded-md cursor-pointer hover:bg-gray-50 hover:text-gray-900 transition-colors'>
                             Post Project
                         </Link>
-                        <Link href="/dashboard" className='text-[14px] text-gray-600 px-[10px] py-[6px] rounded-md cursor-pointer hover:bg-gray-50 hover:text-gray-900 transition-colors'>
+                        {/* <Link href="/dashboard" className='text-[14px] text-gray-600 px-[10px] py-[6px] rounded-md cursor-pointer hover:bg-gray-50 hover:text-gray-900 transition-colors'>
                             Dashboard
-                        </Link>
+                        </Link> */}
                         <Link href={`/profile/${user.username}`} className='text-[14px] text-gray-600 px-[10px] py-[6px] rounded-md cursor-pointer hover:bg-gray-50 hover:text-gray-900 transition-colors'>
                             Profile
                         </Link>
