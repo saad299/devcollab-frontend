@@ -69,7 +69,7 @@ function PublicProfilePage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-center justify-center min-h-100">
         <div className="text-gray-500">Loading profile...</div>
       </div>
     );
@@ -77,7 +77,7 @@ function PublicProfilePage() {
 
   if (error === "User not found") {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] px-4">
+      <div className="flex flex-col items-center justify-center min-h-100 px-4">
         <div className="text-6xl mb-4">👤</div>
         <h2 className="text-2xl font-semibold mb-2">User not found</h2>
         <p className="text-gray-500 mb-6">The profile you&apos;re looking for doesn&apos;t exist.</p>
@@ -93,7 +93,7 @@ function PublicProfilePage() {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] px-4">
+      <div className="flex flex-col items-center justify-center min-h-100 px-4">
         <div className="text-6xl mb-4">⚠️</div>
         <h2 className="text-2xl font-semibold mb-2">Error</h2>
         <p className="text-gray-500 mb-6">{error}</p>
@@ -109,7 +109,8 @@ function PublicProfilePage() {
 
   // const hasProfileData = profile.profile;
   // const hasSocialLinks = profile.profile?.github_url || profile.profile?.linkedin_url || profile.profile?.website_url;
-  const hasSkills = profile.profile?.skills && profile.profile.skills.length > 0;
+  const skillsList = profile.profile?.skills ? profile.profile.skills.split(',').map(s => s.trim()).filter(s => s) : [];
+  const hasSkills = skillsList.length > 0;
   const activeProjects = profile.projects?.filter((project) => project.status === "active") || [];
 
   return (
@@ -232,7 +233,7 @@ function PublicProfilePage() {
         <h2 className="text-xl font-semibold text-gray-900 mb-4">Skills</h2>
         {hasSkills ? (
           <div className="flex flex-wrap gap-2">
-            {profile.profile.skills.map((skill, index) => (
+            {skillsList.map((skill, index) => (
               <span
                 key={index}
                 className="px-3 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded-full border border-blue-200"
