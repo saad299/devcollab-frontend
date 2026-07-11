@@ -41,7 +41,7 @@ function ProjectsPage() {
         const data = await getProjects(params);
         setProjects(data);
       } catch (err) {
-        showToast(parseApiError(err), 'error')
+        showToast(parseApiError(err), "error");
       } finally {
         setLoading(false);
       }
@@ -83,66 +83,83 @@ function ProjectsPage() {
   const hasActiveFilters = search || techStack || role;
 
   return (
-    <div>
-      <h1>Discover Projects and find collaborators</h1>
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <h1 className="text-2xl font-semibold text-gray-900 mb-6">
+        Discover Projects and find collaborators
+      </h1>
 
-      <form onSubmit={handleSearch}>
-        {/* Search */}
-        <input
-          type="text"
-          placeholder="Search projects....."
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          className="border rounded-lg px-4 py-2 outline-none focus:ring-2"
-        />
+      <form
+        onSubmit={handleSearch}
+        className="bg-white border border-gray-200 rounded-xl p-5 mb-8"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 ml-5">
+          {/* Search */}
+          <input
+            type="text"
+            placeholder="Search projects....."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            className="border border-gray-300 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[#378ADD] focus:border-transparent transition-all"
+          />
 
-        {/* Tech Stack */}
-        <input
-          type="text"
-          placeholder="Tech stack (React, Django...)"
-          value={techStackInput}
-          onChange={(e) => setTechStackInput(e.target.value)}
-          className="border rounded-lg px-4 py-2 outline-none focus:ring-2"
-        />
+          {/* Tech Stack */}
+          <input
+            type="text"
+            placeholder="Tech stack (React, Django...)"
+            value={techStackInput}
+            onChange={(e) => setTechStackInput(e.target.value)}
+            className="border border-gray-300 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[#378ADD] focus:border-transparent transition-all"
+          />
 
-        {/* Role */}
-        <input
-          type="text"
-          value={roleInput}
-          onChange={(e) => setRoleInput(e.target.value)}
-          className="border rounded-lg px-4 py-2 outline-none focus:ring-2"
-        />
-        <button type="submit">Search</button>
+          {/* Role */}
+          <input
+            type="text"
+            placeholder="Role (Frontend, Backend...)"
+            value={roleInput}
+            onChange={(e) => setRoleInput(e.target.value)}
+            className="border border-gray-300 rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-[#378ADD] focus:border-transparent transition-all"
+          />
 
-        {hasActiveFilters && (
-          <button type="button" onClick={handleClearFilters}>
-            Clear
-          </button>
-        )}
+          {/* Buttons */}
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              className="bg-[#378ADD] text-white px-6 py-2 rounded-lg hover:bg-[#2a6bc4] transition-colors font-medium whitespace-nowrap"
+            >
+              Search
+            </button>
+
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={handleClearFilters}
+                className="bg-gray-100 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors font-medium whitespace-nowrap"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
       </form>
 
       {/* Results */}
       {loading ? (
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <div className="space-y-4">
-            {[...Array(3)].map((_, i) => (
-              <SkeletonCard key={i} />
-            ))}
-          </div>
+        <div className="space-y-4">
+          {[...Array(3)].map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
         </div>
       ) : error ? (
         <div className="text-center py-16">
-            <p className="text-red-500 mb-4">
-              {error}
-            </p>
+          <p className="text-red-500 mb-4">{error}</p>
 
-            <button
-              onClick={() => router.refresh()}
-              className="bg-black text-white px-5 py-2 rounded-lg"
-            >
-              Retry
-            </button>
-          </div>
+          <button
+            onClick={() => router.refresh()}
+            className="bg-[#378ADD] text-white px-6 py-2 rounded-lg hover:bg-[#2a6bc4] transition-colors font-medium"
+          >
+            Retry
+          </button>
+        </div>
       ) : projects.length === 0 ? (
         // Empty State
         <EmptyState
@@ -158,15 +175,12 @@ function ProjectsPage() {
       ) : (
         <>
           {/* Results Count */}
-          <p className="text-gray-500 mb-6">
-            {projects.length} project(s) found
+          <p className="text-gray-500 text-sm mb-6">
+            {projects.length} project{projects.length !== 1 ? "s" : ""} found
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-            />
+              <ProjectCard key={project.project_id} project={project} />
             ))}
           </div>
         </>

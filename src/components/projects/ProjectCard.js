@@ -1,39 +1,69 @@
-import Link from 'next/link'
-import TechStackTag from './TechStackTag'
-import RoleTag from './RoleTag'
+import Link from "next/link";
+import TechStackTag from "./TechStackTag";
+import RoleTag from "./RoleTag";
 
 function ProjectCard({ project }) {
-    const {id, title, description, owner_data, tech_stack_list, roles_list, created_at} = project;
+  const {
+    project_id,
+    title,
+    description,
+    owner_data,
+    tech_stack_list,
+    roles_list,
+    created_at,
+  } = project;
 
-    const truncate = (str, len) => str.length > len ? str.slice(0, len) + '...' : str;
-    
-    return (
-        <div className='border shadow-2xl hover:bg-amber-300'>
-            <h1><Link href={`/projects/${id}`}>{title}</Link></h1>
+  const truncate = (str, len) =>
+    str.length > len ? str.slice(0, len) + "..." : str;
 
-            <p>by <Link href={`/profile/${owner_data.username}`}>{owner_data.username}</Link></p>
+  return (
+    <div className="bg-white border border-gray-200 rounded-xl p-5 hover:border-gray-300 hover:shadow-md transition-all">
+      <div className="mb-3">
+        <h1 className="text-lg font-semibold text-gray-900">
+          <Link 
+            href={`/projects/${project_id}`} 
+            className="hover:text-[#378ADD] transition-colors"
+          >
+            {title}
+          </Link>
+        </h1>
+      </div>
 
-            <p>{truncate(description, 100)}</p>
+      <p className="text-sm text-gray-600 mb-3">
+        by{" "}
+        <Link 
+          href={`/profile/${owner_data.username}`}
+          className="text-gray-700 hover:text-[#378ADD] transition-colors"
+        >
+          {owner_data.username}
+        </Link>
+      </p>
 
-            <div className='flex gap-2'>
-                {tech_stack_list.includes('javascript') &&
-                tech_stack_list.map((tech) => (
-                    <TechStackTag key={tech} techStack={tech} />
-                ))
-                }
+      <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+        {truncate(description, 99)}
+      </p>
 
-                {roles_list.length > 0 &&
-                roles_list.map((role) => (
-                    <RoleTag key={role} role={role} />
-                ))
-                }
-            </div>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {tech_stack_list.length > 0 &&
+          tech_stack_list.map((tech) => (
+            <TechStackTag key={tech} tech={tech} />
+          ))}
 
-            <footer className='text-sm'>
-                {new Date(created_at).toLocaleDateString()}
-            </footer>
-        </div>
-    );
+        {roles_list.length > 0 &&
+          roles_list.map((role) => <RoleTag key={role} role={role} />)}
+      </div>
+
+      <footer className="text-xs text-gray-500 pt-3 border-t border-gray-100">
+        Date Posted: {new Date(created_at).toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          // hour: "2-digit",
+          // minute: "2-digit",
+        })}
+      </footer>
+    </div>
+  );
 }
 
 export default ProjectCard;

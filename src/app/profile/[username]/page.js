@@ -111,7 +111,10 @@ function PublicProfilePage() {
   // const hasSocialLinks = profile.profile?.github_url || profile.profile?.linkedin_url || profile.profile?.website_url;
   const skillsList = profile.profile?.skills ? profile.profile.skills.split(',').map(s => s.trim()).filter(s => s) : [];
   const hasSkills = skillsList.length > 0;
-  const activeProjects = profile.projects?.filter((project) => project.status === "active") || [];
+  // const activeProjects = profile.projects?.filter((project) => project.status === "active") || [];
+  const activeProjects = profile.projects?.filter((project) => 
+  project.status === "active"
+) || [];
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">

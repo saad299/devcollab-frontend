@@ -16,6 +16,32 @@ export default function AuthProvider({ children }) {
         setLoading(false)
     }, [])
 
+    // Listen for localStorage changes (cross-tab sync and axios interceptor changes)
+    useEffect(() => {
+        const handleStorageChange = (e) => {
+            if (e.key === 'access_token' || e.key === null) {
+                // Token was removed or localStorage was cleared
+                const currentUser = getCurrentUser()
+                setUser(currentUser)
+            }
+        }
+
+        // Listen for storage events (cross-tab)
+        window.addEventListener('storage', handleStorageChange)
+
+        // Listen for custom auth events (same-tab from axios interceptor)
+        const handleAuthLogout = () => {
+            setUser(null)
+        }
+
+        window.addEventListener('auth:logout', handleAuthLogout)
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange)
+            window.removeEventListener('auth:logout', handleAuthLogout)
+        }
+    }, [])
+
     async function login(email, password) {
         const data = await loginService(email, password)
         // data = await loginService(email, password)

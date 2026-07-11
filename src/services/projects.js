@@ -1,12 +1,12 @@
 import api from './api'
 
 export async function getProjects(params={}) {
-    const paramsQuery = {
-        search: 'django',
-        tech_stack: 'react',
-        role: 'designer'
-    }
-    const response = await api.get('/projects', { params: paramsQuery });
+    // const paramsQuery = {
+    //     search: 'nextjs',
+    //     tech_stack: 'NextJS',
+    //     role: 'Full-Stack Developer'
+    // }
+    const response = await api.get('/projects', { params /*: paramsQuery */ });
     return response.data;
     // } catch (error) {
     //     console.error('Error fetching projects:', error);

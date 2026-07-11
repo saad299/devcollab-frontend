@@ -28,26 +28,29 @@ function NewProjectPage() {
             //     setError(err.message)
             // }
             showToast(parseApiError(err), 'error')
-            setDeleting(false)
         }
         setLoading(false)
     }
 
     return (
         <ProtectedRoute>
+            <div className="max-w-3xl mx-auto px-4 py-8">
+                <div className="mb-8">
+                    <h1 className="text-3xl font-semibold text-gray-900 mb-2">
+                        Post a New Project
+                    </h1>
+                    <p className="text-gray-600">
+                        Share what you&apos;re building and find collaborators
+                    </p>
+                </div>
 
-            <div>
-                <h1>Post a New Project</h1>
-                <p>Share what you&apos;re building and find collaborators</p>
-
-                {error && <p className="text-red-500">{error}</p>}
+                <div className="bg-white border border-gray-200 rounded-xl p-6">
+                    <ProjectForm
+                        onSubmit={handleSubmit}
+                        loading={loading}
+                    />
+                </div>
             </div>
-
-            <ProjectForm
-                onSubmit={handleSubmit}
-                loading={loading}
-                // error={error}
-            />
         </ProtectedRoute>
     )
 }
