@@ -41,11 +41,11 @@ function DashboardPage() {
       setProjects(myProjects);
 
       const requestPromises = myProjects.map((project) =>
-        getProjectRequests(project.id)
+        getProjectRequests(project.project_id)
           .then((requests) =>
             requests.map((request) => ({
               ...request,
-              projectId: project.id,
+              projectId: project.project_id,
               projectTitle: project.title,
             })),
           )
@@ -73,7 +73,7 @@ function DashboardPage() {
     setDeletingId(projectId);
     try {
       await deleteProject(projectId);
-      setProjects((prev) => prev.filter((p) => p.id !== projectId));
+      setProjects((prev) => prev.filter((p) => p.project_id !== projectId));
       setRequests((prev) => prev.filter((r) => r.projectId !== projectId));
       showToast("Project deleted successfully.", "success");
     } catch (err) {
@@ -226,7 +226,7 @@ function DashboardPage() {
             <div className="space-y-3">
               {projects.map((project) => {
                 const projectRequests = requests.filter(
-                  (r) => r.projectId === project.id,
+                  (r) => r.projectId === project.project_id,
                 );
                 const pendingCount = projectRequests.filter(
                   (r) => r.status === "pending",
@@ -234,7 +234,7 @@ function DashboardPage() {
 
                 return (
                   <div
-                    key={project.id}
+                    key={project.project_id}
                     className="bg-white border border-gray-200 rounded-xl px-5 py-4"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -278,25 +278,25 @@ function DashboardPage() {
 
                       <div className="flex items-center gap-2 shrink-0">
                         <Link
-                          href={`/projects/${project.id}`}
+                          href={`/projects/${project.project_id}`}
                           className="text-sm border border-gray-200 hover:bg-gray-50 text-gray-600 px-3 py-1.5 rounded-lg transition-colors"
                         >
                           View
                         </Link>
                         <Link
-                          href={`/projects/${project.id}/edit`}
+                          href={`/projects/${project.project_id}/edit`}
                           className="text-sm border border-gray-200 hover:bg-gray-50 text-gray-600 px-3 py-1.5 rounded-lg transition-colors"
                         >
                           Edit
                         </Link>
                         <button
                           onClick={() =>
-                            handleDeleteProject(project.id, project.title)
+                            handleDeleteProject(project.project_id, project.title)
                           }
-                          disabled={deletingId === project.id}
+                          disabled={deletingId === project.project_id}
                           className="text-sm border border-red-200 hover:bg-red-50 text-red-500 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
                         >
-                          {deletingId === project.id ? "Deleting..." : "Delete"}
+                          {deletingId === project.project_id ? "Deleting..." : "Delete"}
                         </button>
                       </div>
                     </div>

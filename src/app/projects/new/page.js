@@ -19,14 +19,29 @@ function NewProjectPage() {
         setError(null)
 
         try {
-            const newProject = await createProject(formData)
-            router.push(`/projects/${newProject.id}`)
+            const backendData = {
+                title: formData.title,
+                description: formData.description,
+                tech_stack: formData.techStack,
+                roles_needed: formData.rolesNeeded,
+                status: formData.status === 'open' || formData.status === 'in_progress' ? 'active' : formData.status === 'cancelled' ? 'on_hold' : formData.status,
+                is_open: formData.isOpen
+            }
+            // const newProject = await createProject(backendData)
+            // router.push(`/projects/${newProject.id}`)
+            // router.push(`/projects/${newProject.project_id}`)
+            // const newProject = await createProject(backendData)
+            // console.log('Backend response:', newProject)
+            // router.push(`/projects/${newProject.project_id}`)
+            // console.log('Sending to backend:', backendData)
+            // const newProject = await createProject(backendData)
+            // console.log('Backend response:', newProject)
+            // const projectId = newProject.project_id || newProject.id || newProject.project_id
+            // console.log('Extracted Project ID:', projectId)
+            // router.push(`/projects/${projectId}`)
+            const newProject = await createProject(backendData)
+            router.push(`/projects/${newProject.project_id}`)
         } catch (err) {
-            // if (err.response?.data) {
-            //     setError(err.response.data.message)
-            // } else {
-            //     setError(err.message)
-            // }
             showToast(parseApiError(err), 'error')
         }
         setLoading(false)
