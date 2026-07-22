@@ -291,12 +291,17 @@ function DashboardPage() {
                         </Link>
                         <button
                           onClick={() =>
-                            handleDeleteProject(project.project_id, project.title)
+                            handleDeleteProject(
+                              project.project_id,
+                              project.title,
+                            )
                           }
                           disabled={deletingId === project.project_id}
                           className="text-sm border border-red-200 hover:bg-red-50 text-red-500 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
                         >
-                          {deletingId === project.project_id ? "Deleting..." : "Delete"}
+                          {deletingId === project.project_id
+                            ? "Deleting..."
+                            : "Delete"}
                         </button>
                       </div>
                     </div>
