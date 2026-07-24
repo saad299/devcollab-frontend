@@ -45,12 +45,12 @@ function ProjectCard({ project }) {
 
       <div className="flex flex-wrap gap-2 mb-4">
         {tech_stack_list.length > 0 &&
-          tech_stack_list.map((tech) => (
-            <TechStackTag key={tech} tech={tech} />
+          tech_stack_list.map((tech, index) => (
+            <TechStackTag key={`${tech}-${index}`} tech={tech} />
           ))}
 
         {roles_list.length > 0 &&
-          roles_list.map((role) => <RoleTag key={role} role={role} />)}
+          roles_list.map((role, index) => <RoleTag key={`${role}-${index}`} role={role} />)}
       </div>
 
       <footer className="text-xs text-gray-500 pt-3 border-t border-gray-100">
