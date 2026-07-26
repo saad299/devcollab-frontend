@@ -39,18 +39,18 @@ export default function LandingPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="bg-white border-b border-gray-200">
-        <div className="max-w-5xl mx-auto px-4 py-20 text-center">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
+        <div className="max-w-5xl mx-auto px-4 py-12 md:py-20 text-center">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 rounded-full mb-4 sm:mb-6">
             <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
             Open for collaboration requests
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 mb-5 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-4 sm:mb-5 leading-tight">
             Find developers to build
             <br className="hidden md:block" /> with you
           </h1>
 
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0">
             DevCollab connects developers who have project ideas with developers
             who want to contribute. Post your project, find collaborators, and
             build something together.
@@ -93,12 +93,12 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section className="max-w-5xl mx-auto px-4 py-16">
-        <h2 className="text-2xl font-semibold text-gray-900 text-center mb-12">
+      <section className="max-w-5xl mx-auto px-4 py-12 md:py-16">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 text-center mb-8 sm:mb-12">
           How it works
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {[
             {
               step: "01",
@@ -124,7 +124,7 @@ export default function LandingPage() {
                 {item.step}
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-sm text-gray-500 leading-relaxed px-2">
                 {item.description}
               </p>
             </div>
@@ -134,8 +134,8 @@ export default function LandingPage() {
 
       {/* Stats Row */}
       <section className="bg-white border-y border-gray-200">
-        <div className="max-w-5xl mx-auto px-4 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-5xl mx-auto px-4 py-8 md:py-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
             {[
               { value: "Free", label: "Always free to use" },
               { value: "Open", label: "Open source friendly" },
@@ -143,10 +143,10 @@ export default function LandingPage() {
               { value: "Real", label: "Real developers only" },
             ].map((stat) => (
               <div key={stat.label}>
-                <p className="text-2xl font-semibold text-gray-900 mb-1">
+                <p className="text-xl md:text-2xl font-semibold text-gray-900 mb-1">
                   {stat.value}
                 </p>
-                <p className="text-sm text-gray-500">{stat.label}</p>
+                <p className="text-xs sm:text-sm text-gray-500">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -154,10 +154,10 @@ export default function LandingPage() {
       </section>
 
       {/* Recent Projects */}
-      <section className="max-w-5xl mx-auto px-4 py-16">
-        <div className="flex items-center justify-between mb-8">
+      <section className="max-w-5xl mx-auto px-4 py-12 md:py-16">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h2 className="text-2xl font-semibold text-gray-900">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
               Recent Projects
             </h2>
             <p className="text-sm text-gray-500 mt-1">
@@ -198,11 +198,11 @@ export default function LandingPage() {
 
       {/* CTA Section */}
       <section className="bg-white border-t border-gray-200">
-        <div className="max-w-5xl mx-auto px-4 py-16 text-center">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+        <div className="max-w-5xl mx-auto px-4 py-12 md:py-16 text-center">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">
             Ready to find your next collaborator?
           </h2>
-          <p className="text-gray-500 mb-8 max-w-md mx-auto text-sm leading-relaxed">
+          <p className="text-gray-500 mb-6 sm:mb-8 max-w-md mx-auto text-sm leading-relaxed px-2">
             Join DevCollab, post your project, and connect with developers who
             want to build with you.
           </p>
