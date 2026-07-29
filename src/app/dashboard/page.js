@@ -115,7 +115,7 @@ function DashboardPage() {
   if (loading) {
     return (
       // <ProtectedRoute>
-      <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:py-8">
         <SkeletonProfile />
         {/* skeleton stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
@@ -153,11 +153,13 @@ function DashboardPage() {
     // </ProtectedRoute>
 
     <ProtectedRoute>
-      <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:py-8">
         {/* header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+            <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
+              Dashboard
+            </h1>
             <p className="text-gray-500 text-sm mt-1">
               Welcome back,{" "}
               <span className="font-medium text-gray-700">
@@ -175,11 +177,11 @@ function DashboardPage() {
 
         {/* error banner */}
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 flex items-center justify-between">
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <span className="text-sm">{error}</span>
             <button
               onClick={fetchDashboardData}
-              className="text-sm font-medium underline ml-4 hover:no-underline"
+              className="text-sm font-medium underline hover:no-underline self-start sm:self-auto"
             >
               Retry
             </button>
@@ -187,7 +189,7 @@ function DashboardPage() {
         )}
 
         {/* stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 sm:mb-8">
           {[
             { label: "Projects Posted", value: totalProjects },
             { label: "Total Requests", value: totalRequests },
@@ -196,10 +198,10 @@ function DashboardPage() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="bg-white border border-gray-200 rounded-xl px-4 py-4 text-center"
+              className="bg-white border border-gray-200 rounded-xl px-3 sm:px-4 py-3 sm:py-4 text-center"
             >
               <p className="text-xs text-gray-500 mb-1">{stat.label}</p>
-              <p className="text-2xl font-semibold text-gray-900">
+              <p className="text-xl sm:text-2xl font-semibold text-gray-900">
                 {stat.value}
               </p>
             </div>
@@ -207,8 +209,8 @@ function DashboardPage() {
         </div>
 
         {/* my projects section */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
             <h2 className="text-lg font-semibold text-gray-900">My Projects</h2>
             <span className="text-sm text-gray-500">
               {totalProjects} project{totalProjects !== 1 ? "s" : ""}
@@ -235,7 +237,7 @@ function DashboardPage() {
                 return (
                   <div
                     key={project.project_id}
-                    className="bg-white border border-gray-200 rounded-xl px-5 py-4"
+                    className="bg-white border border-gray-200 rounded-xl px-4 sm:px-5 py-4"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                       <div className="flex-1 min-w-0">
@@ -276,7 +278,7 @@ function DashboardPage() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 shrink-0">
+                      <div className="flex flex-wrap items-center gap-2 shrink-0">
                         <Link
                           href={`/projects/${project.project_id}`}
                           className="text-sm border border-gray-200 hover:bg-gray-50 text-gray-600 px-3 py-1.5 rounded-lg transition-colors"
@@ -314,7 +316,7 @@ function DashboardPage() {
 
         {/* incoming requests section */}
         <div>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
             <h2 className="text-lg font-semibold text-gray-900">
               Incoming Requests
             </h2>
