@@ -114,7 +114,6 @@ function DashboardPage() {
   //   Show loading skeleton
   if (loading) {
     return (
-      // <ProtectedRoute>
       <div className="max-w-5xl mx-auto px-4 py-6 sm:py-8">
         <SkeletonProfile />
         {/* skeleton stats */}
@@ -140,18 +139,10 @@ function DashboardPage() {
           <SkeletonRequestCard key={i} />
         ))}
       </div>
-      // </ProtectedRoute>
     );
   }
 
   return (
-    // <ProtectedRoute>
-    //   <div>
-    //     <h1>Dashboard</h1>
-    //     <p>Welcome, {user?.username}</p>
-    //   </div>
-    // </ProtectedRoute>
-
     <ProtectedRoute>
       <div className="max-w-5xl mx-auto px-4 py-6 sm:py-8">
         {/* header */}

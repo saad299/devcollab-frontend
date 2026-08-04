@@ -1,0 +1,28 @@
+# DevCollab robots.txt
+# This file guides search engine crawlers on which pages to index and which to avoid
+
+# Allow all crawlers
+User-agent: *
+
+# Disallow authenticated and private routes
+Disallow: /dashboard
+Disallow: /projects/new
+Disallow: /projects/*/edit
+Disallow: /login
+Disallow: /register
+Disallow: /api/
+
+# Disallow Next.js internal routes
+Disallow: /_next/
+Disallow: /_error
+
+# Allow public content routes
+Allow: /
+Allow: /projects
+Allow: /projects/*
+
+# Crawl delay (optional, prevents overloading the server)
+Crawl-delay: 1
+
+# Sitemap location (uncomment and update if you create a sitemap)
+# Sitemap: https://yourdomain.com/sitemap.xml
