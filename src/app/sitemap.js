@@ -1,6 +1,6 @@
 import { getProjects } from '@/services/projects';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://yourdomain.com';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://devcollab-frontend-one.vercel.app';
 
 export default async function sitemap() {
   // Static routes
