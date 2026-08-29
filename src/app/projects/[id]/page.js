@@ -93,7 +93,7 @@ function ProjectDetailPage() {
     const approved = requestStatus === "approved";
     const rejected = requestStatus === "rejected";
 
-    if (!requestStatus) {
+    if (requestStatus) {
       return (
         <>
           {pending && (
@@ -119,14 +119,6 @@ function ProjectDetailPage() {
             >
               Rejected
             </button>
-          )}
-          {!pending && !approved && !rejected && (
-            <Link
-              href={`/projects/${id}/apply`}
-              className="bg-[#378ADD] text-white px-6 py-2 rounded-lg hover:bg-[#2a6bc4] transition-colors font-medium inline-block"
-            >
-              Apply
-            </Link>
           )}
         </>
       );
