@@ -14,9 +14,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// export const metadata = {
+//   title: "DevCollab - Where developers collab together",
+//   description: "A platform where developers can come and collab together on projects that they are working",
+// };
 export const metadata = {
-  title: "DevCollab - Where developers collab together",
-  description: "A platform where developers can come and collab together on projects that they are working",
+  title: 'DevCollab - Find Developer Collaborators',
+  description: 'Connect with developers to build projects together',
+  openGraph: {
+    title: 'DevCollab',
+    description: 'Find collaborators for your projects',
+    // images: ['/og-image.png']
+  }
 };
 
 // export default function RootLayout({ children }) {
