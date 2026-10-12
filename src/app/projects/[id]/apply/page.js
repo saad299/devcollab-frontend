@@ -127,7 +127,7 @@ function ApplyPage() {
             {project.title}
           </p>
           <p className="text-gray-500 text-xs sm:text-sm md:text-base mb-2 sm:mb-3">
-            By {project.owner?.username}
+            By {project.owner_data?.username}
           </p>
           <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base md:text-base">
             {project.description?.trim().substring(0, 150)}...
